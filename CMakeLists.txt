@@ -25,7 +25,7 @@ find_package( Eigen3 REQUIRED)
 
 ## Declare a catkin package
 catkin_package(
-        CATKIN_DEPENDS roscpp rospy std_msgs image_transport eigen_conversions cv_bridge tf2 tf2_ros message_filters rosbag
+        CATKIN_DEPENDS roscpp rospy std_msgs image_transport eigen_conversions cv_bridge tf2 tf2_ros message_filters rosbag nbvplanner
         INCLUDE_DIRS include
         LIBRARIES mvtlc
 )
@@ -39,8 +39,9 @@ include_directories(
         ${rospy_INCLUDE_DIRS}
         ${OpenCV_INCLUDE_DIRS}
         ${yaml-cpp_INCLUDE_DIRS}
+        ../../devel/include
 )
 
-add_executable(mav_exploration src/mav_exploration_node.cc)
+add_executable(mav_exploration_node src/mav_exploration_node.cc)
 
-target_link_libraries(mav_exploration ${OpenCV_LIBRARIES} yaml-cpp ${catkin_LIBRARIES})
+target_link_libraries(mav_exploration_node ${OpenCV_LIBRARIES} yaml-cpp ${catkin_LIBRARIES})
