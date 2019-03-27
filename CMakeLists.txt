@@ -13,6 +13,8 @@ find_package(catkin REQUIRED COMPONENTS
         std_msgs
         image_transport
         cv_bridge
+        tf
+        eigen_conversions
         tf2
         tf2_ros
         message_filters
@@ -25,7 +27,7 @@ find_package( Eigen3 REQUIRED)
 
 ## Declare a catkin package
 catkin_package(
-        CATKIN_DEPENDS roscpp rospy std_msgs image_transport eigen_conversions cv_bridge tf2 tf2_ros message_filters rosbag nbvplanner
+        CATKIN_DEPENDS roscpp rospy std_msgs image_transport eigen_conversions cv_bridge tf tf2 tf2_ros eigen_conversions message_filters rosbag nbvplanner
         INCLUDE_DIRS include
         LIBRARIES mvtlc
 )
@@ -43,5 +45,7 @@ include_directories(
 )
 
 add_executable(mav_exploration_node src/mav_exploration_node.cc)
+add_executable(odometry_switcher_node src/odometry_switcher_node.cc)
 
-target_link_libraries(mav_exploration_node ${OpenCV_LIBRARIES} yaml-cpp ${catkin_LIBRARIES})
+target_link_libraries(mav_exploration_node yaml-cpp ${catkin_LIBRARIES})
+target_link_libraries(odometry_switcher_node ${catkin_LIBRARIES})
