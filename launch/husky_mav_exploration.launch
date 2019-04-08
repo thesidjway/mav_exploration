@@ -40,7 +40,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <node pkg="tf" type="static_transform_publisher" name="tf_53" args="0 0 0 0 0 0 world navigation 100" />
 
-  <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
+  <include file="$(find husky_gazebo)/launch/spawn_husky_mtp.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
   </include>
@@ -49,7 +49,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <arg name="mav_name" value="$(arg mav_name)" />
     <arg name="waypoint_x" value="0.0" />
     <arg name="waypoint_y" value="0.0" />
-    <arg name="waypoint_z" value="1.0" />
+    <arg name="waypoint_z" value="3.0" />
     <arg name="param_file" value="$(find mav_exploration)/resource/exploration.yaml" />
     <arg name="enable_logging" value="$(arg enable_logging)" />
     <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
@@ -60,5 +60,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <arg name="visualize_max_z" value="2.5" />
     <arg name="sensor_max_range" value="5.0" />
   </include>
+
+  <node pkg="optimal_visual_servoing" type="optimal_visual_servoing" name="ovs" output="screen" />
+
+  <node pkg="mav_exploration" type="timed_roslaunch.sh" args="5 mav_exploration pan_tilt_pubs_delayed.launch" name="timed_roslaunch" output="screen" />
 
 </launch>
