@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="mav_name" default="firefly" />
+  <arg name="mav_name" default="baroness" />
   <arg name="waypoint_x" default="0" />
   <arg name="waypoint_y" default="0" />
   <arg name="waypoint_z" default="1" />
@@ -34,7 +34,7 @@
     <param name="wp_z" type="double" value="$(arg waypoint_z)" />
     <include file="$(find rotors_gazebo)/launch/spawn_mtp.launch">
       <arg name="mav_name" value="$(arg mav_name)$(arg subscript)" />
-      <arg name="model" value="$(find rotors_description)/urdf/mtp_drone.gazebo" />
+      <arg name="model" value="$(find rotors_description)/urdf/baroness_with_vi_sensor.gazebo" />
       <arg name="enable_logging" value="$(arg enable_logging)" />
       <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
       <arg name="log_file" value="$(arg log_file)"/>
@@ -48,7 +48,7 @@
     <node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen">
       <rosparam command="load" file="$(find rotors_gazebo)/resource/lee_controller_$(arg mav_name).yaml" />
       <rosparam command="load" file="$(find rotors_gazebo)/resource/$(arg mav_name).yaml" />
-      <remap from="odometry" to= "/firefly/odometry_sensor1/odometry" />
+      <remap from="odometry" to= "/baroness/odometry_sensor1/odometry" />
     </node>
     <node name="nbvPlanner" pkg="nbvplanner" type="nbvPlanner" output="screen">
       <param name="tf_frame" type="string" value="$(arg tf_frame)" />
@@ -61,7 +61,7 @@
       <remap from="cam0/camera_info" to="/$(arg mav_name)$(arg subscript)/vi_sensor/left/camera_info"/>
       <remap from="cam1/camera_info" to="/$(arg mav_name)$(arg subscript)/vi_sensor/right/camera_info"/>
       <remap from="pointcloud_throttled" to="$(arg pcl_topic)"/>
-      <remap from="odometry" to= "/firefly/odometry_sensor1/odometry" />
+      <remap from="odometry" to= "/baroness/odometry_sensor1/odometry" />
       <remap from="nbvplanner" to="/$(arg mav_name)$(arg subscript)/nbvplanner"/>
       <remap from="peer_pose_1" to="$(arg peer_vehicle_pose_topic_1)"/>
       <remap from="peer_pose_2" to="$(arg peer_vehicle_pose_topic_2)"/>

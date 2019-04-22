@@ -731,6 +731,9 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
+
+
+
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <link name='link'>
@@ -795,6 +798,11 @@
         </link>
       </model>
     </state>
+    <include>
+      <uri>model://orchard_ground</uri>
+      <name>ground_plane2</name>
+      <pose>0 0 0.01 0 0 0</pose>
+    </include>
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>1.49016 -3.72367 3.62379 -2.88294e-17 0.273797 1.4042</pose>
